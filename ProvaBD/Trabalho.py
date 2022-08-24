@@ -17,9 +17,10 @@ myresult = mycursor.fetchall()
 
 for myresult, tabelas in enumerate(myresult):
     print(myresult, f'{tabelas[0]}')
+    
 
 print("Digite uma tabela para ser pesquisada: ")
-opcao = input()   
+opcao = input()
 
 
 if (opcao == '0'):
@@ -365,15 +366,16 @@ if (opcao == '12'):
     elif(teclado == '2'):
         coluna = "RegionID"
 
+mycursor.execute(f'SELECT {coluna} FROM {tabela}')
+myresult = mycursor.fetchall()
+
+for registro in myresult:
+    print(registro)
+
 print("Digite uma opção para ser pesquisada: ")
 teclado = input()
 
-
-mycursor = mydb.cursor()
-
-
 mycursor.execute(f'SELECT * FROM {tabela} where {coluna} like "%{teclado}%"')
-
 myresult = mycursor.fetchall()
 
 for registro in myresult:
